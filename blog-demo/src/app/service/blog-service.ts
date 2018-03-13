@@ -8,4 +8,8 @@ import 'rxjs/add/observable/from';
 
 export class BlogService {
    private blogListSubject: BehaviorSubject<Blog[]> = new BehaviorSubject(initialBlogList);
+
+   getBlogListSubject(): BehaviorSubject<Blog[]> {
+       return this.blogListSubject;
+   }
 }
