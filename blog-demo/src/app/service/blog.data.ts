@@ -2,7 +2,7 @@ import { Blog } from '../service/blog.model';
 
 export const initialBlogList: Blog[] = [
     {   
-        id: new Date().getTime(), 
+        id: 1, 
         title: 'Lord of the Rings', 
         content: `Set in the fictional world of Middle-earth, 
                   the films follow the hobbit Frodo Baggins (Elijah Wood) as he and 
@@ -18,7 +18,7 @@ export const initialBlogList: Blog[] = [
         thumbsdown: 2
     },
     {   
-        id: new Date().getTime(), 
+        id: 2, 
         title: 'The GodFather', 
         content: `The Godfather is an American film series that consists of three crime drama films 
                   directed by Francis Ford Coppola inspired by the novel of the same name by Italian 
@@ -30,7 +30,7 @@ export const initialBlogList: Blog[] = [
         thumbsdown: 1
     },
     {   
-        id: new Date().getTime(), 
+        id: 3, 
         title: 'Shawshank Redemption', 
         content: `The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont, 
                   based on the 1982 Stephen King novella Rita Hayworth and Shawshank Redemption. It tells the 
@@ -45,7 +45,7 @@ export const initialBlogList: Blog[] = [
         thumbsdown: 1
     },
     {   
-        id: new Date().getTime(), 
+        id: 4, 
         title: `Schindler's List`, 
         content: `Schindler's List is a 1993 American historical period drama film directed and co-produced 
                   by Steven Spielberg and written by Steven Zaillian. It is based on the novel Schindler's 
