@@ -10,17 +10,17 @@ import { Observable } from "rxjs/Observable";
 })
 export class blogListComponent implements OnInit {
     listObservable: Observable<Blog[]>;
+    blogList: any = [];
 
     constructor(private blogService: BlogService){
 
     }
 
     ngOnInit (){
-        this.listObservable = this.blogService.getBlogListSubject();
-        // this.blogService.getBlogListSubject().subscribe((x) => {
-        //     this.blogList.push(x);
-        //     console.log(this.blogList[this.blogList.length-1]);
-        // });
-        
+        // this.listObservable = this.blogService.getBlogListSubject();
+        this.blogService.getBlogListSubject().subscribe((x) => {
+            this.blogList.push(x);
+            console.log(this.blogList);
+        });
     }
 }
