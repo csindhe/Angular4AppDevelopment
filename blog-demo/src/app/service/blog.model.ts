@@ -7,7 +7,7 @@ export class Blog {
     thumbsdown: number;
     editMode?: boolean;
     voted?: boolean;
-    voteToolTip?: boolean;
+    voteToolTip?: string;
 
     constructor(title: string, content: string, author: string) {
         this.title = title;

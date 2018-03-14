@@ -9,7 +9,7 @@ import { Observable } from "rxjs/Observable";
     styleUrls: ['./blogList.component.css']
 })
 export class blogListComponent implements OnInit {
-    listObservable: Observable<Blog[]>;
+    // listObservable: Observable<Blog[]>;
     blogList: any = [];
 
     constructor(private blogService: BlogService){
@@ -19,8 +19,21 @@ export class blogListComponent implements OnInit {
     ngOnInit (){
         // this.listObservable = this.blogService.getBlogListSubject();
         this.blogService.getBlogListSubject().subscribe((x) => {
-            this.blogList.push(x);
-            console.log(this.blogList);
+            this.blogList = x;
         });
+    }
+
+    vote(direction: string, blog: Blog) {
+        (!blog.voted) && (blog[direction]+=1);
+        blog.voted=true;
+        blog.voteToolTip="You have casted your vote for this blog already. Can vote only once!";
+    }
+
+    editBlog(event, blog){
+        
+    }
+
+    toggleEditMode(blog: Blog){
+        blog.editMode = !blog.editMode;
     }
 }

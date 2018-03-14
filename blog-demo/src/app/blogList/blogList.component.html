@@ -1,10 +1,11 @@
 <div class="container-fluid">
     <ngb-accordion #acc="ngbAccordion" activeIds="1-header" closeOthers=true>
-        <ngb-panel *ngFor="let blog of listObservable | async" [id]="blog.id">
+        <!-- <ngb-panel *ngFor="let blog of listObservable | async" [id]="blog.id"> -->
+        <ngb-panel *ngFor="let blog of blogList" [id]="blog.id">
             <ng-template ngbPanelTitle>
                 <span class="title">{{blog.title}}</span>
                 <span class='editbutton' style="display: block; float: right;">&nbsp;
-                    <i class="fa fa-edit" title="Edit blog - {{blog.title}}"></i>
+                    <i class="fa fa-edit" title="Edit blog - {{blog.title}}" (click)="editBlog($event, blog)"></i>
                 </span>&nbsp;
                 <span class="author" style="display: block; float: right;">Author: {{blog.author}}</span>
             </ng-template>
@@ -15,12 +16,15 @@
                     </div>
                     <div class="rating">
                         <span>
-                            <i [ngbTooltip]="blog.voteToolTip" class="fa fa-thumbs-up"></i> &nbsp; {{blog.thumbsup}}
+                            <i [ngbTooltip]="blog.voteToolTip" class="fa fa-thumbs-up" (click)='vote("thumbsup", blog)'></i> &nbsp; {{blog.thumbsup}}
                         </span>&nbsp;&nbsp;
                         <span>
-                            <i [ngbTooltip]="blog.voteToolTip" class="fa fa-thumbs-down"></i> &nbsp; {{blog.thumbsdown}}
+                            <i [ngbTooltip]="blog.voteToolTip" class="fa fa-thumbs-down" (click)='vote("thumbsdown", blog)'></i> &nbsp; {{blog.thumbsdown}}
                         </span>
                     </div>
+                </div>
+                <div *ngIf="blog.editMode">
+
                 </div>
             </ng-template>
         </ngb-panel>

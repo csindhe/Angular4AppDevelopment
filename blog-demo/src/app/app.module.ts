@@ -1,3 +1,4 @@
+import { BlogEditComponent } from './blogEdit/blogEdit.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +12,8 @@ import { blogListComponent } from './blogList/blogList.component';
 @NgModule({
   declarations: [
     AppComponent,
-    blogListComponent
+    blogListComponent,
+    BlogEditComponent
   ],
   imports: [
     BrowserModule,
