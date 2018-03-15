@@ -1,6 +1,8 @@
 <div class="ui info message" *ngIf="commentMode !== true && blogCommentList.length !== 0">
+    <h4>Comments</h4>
     <div *ngFor="let comment of blogCommentList" class="media border-light rounded">
-        <div class="text-dark commentC" style="flex-grow: 1; padding-left: 5px;">
+        <!-- <div class="text-dark commentC nav-primary" style="flex-grow: 1; padding-left: 5px; border-bottom: 1px solid #34b7bc; margin-bottom: 20px;"> -->
+        <div class="text-dark commentC nav-primary" style="flex-grow: 1; padding-left: 5px;">
             <span class="media-body text-justify">
                 {{comment.content}}
             </span>
@@ -11,7 +13,7 @@
     </div>    
 </div>
 <div *ngIf="commentMode !== true">
-    <a (click)="enterCommentMode()">Add a Comment</a>
+    <a (click)="enterCommentMode()" style="color: #007bff; cursor: pointer;">Add a Comment</a>
 </div>
 <div class="raised segment" *ngIf="commentMode === true">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="ui form">
@@ -31,7 +33,7 @@
         </div>
 
         <div style ="padding:10px  5px;; float:right;">
-            <button  class="btn btn-danger">Cancel</button>
+            <button  class="btn btn-danger" (click)="exitCommentMode()">Cancel</button>
         </div>
 
     </form>
