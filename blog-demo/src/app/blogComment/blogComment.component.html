@@ -1,10 +1,10 @@
 <div class="raised segment">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="ui form">
 
-        <div class="field">
+        <!-- <div class="field">
             <label for="blogTitle">Title:</label>
             <input type="text" id="blogTitle" formControlName="title">
-        </div>
+        </div> -->
 
         <div class="field">
             <label for="blogContent">Content:</label>
@@ -16,12 +16,12 @@
             <input type="text" id="blogAuthor" formControlName="author">
         </div>
 
-        <div style ="padding:10px  5px;; float:right;">
+        <div style ="padding:10px  5px; float:right;">
             <button type="submit" class="btn btn-info" [disabled]="!myForm.valid">Submit</button>
         </div>
 
         <div style ="padding:10px  5px;; float:right;">
-            <button  class="btn btn-danger"  (click)="toggleEditMode()">Cancel</button>
+            <button  class="btn btn-danger">Cancel</button>
         </div>
 
     </form>

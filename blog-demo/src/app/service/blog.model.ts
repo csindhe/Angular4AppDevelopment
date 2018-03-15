@@ -6,6 +6,7 @@ export class Blog {
     thumbsup: number;
     thumbsdown: number;
     editMode?: boolean;
+    commentMode?: boolean;
     voted?: boolean;
     voteToolTip?: string;
 
@@ -18,5 +19,12 @@ export class Blog {
         this.thumbsup = 0;
     }
 
+}
+
+export class BlogEdit {
+    id: any;
+    title: string;
+    content: string;
+    author: string;
 }
 

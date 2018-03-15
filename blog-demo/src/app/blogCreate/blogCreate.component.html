@@ -16,12 +16,12 @@
             <input type="text" id="blogAuthor" formControlName="author">
         </div>
 
-        <div style ="padding:10px  5px;; float:right;">
-            <button type="submit" class="btn btn-info" [disabled]="!myForm.valid">Submit</button>
+        <div style ="padding:10px  5px; float:right;">
+            <button type="submit" class="btn btn-info" [disabled]="!myForm.valid" style="background-color: black; border-color: black;">Submit</button>
         </div>
 
         <div style ="padding:10px  5px;; float:right;">
-            <button  class="btn btn-danger"  (click)="toggleEditMode()">Cancel</button>
+            <button  class="btn btn-danger" (click)="exitCreateBlog()">Cancel</button>
         </div>
 
     </form>

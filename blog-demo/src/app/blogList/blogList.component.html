@@ -23,8 +23,15 @@
                         </span>
                     </div>
                 </div>
-                <div *ngIf="blog.editMode">
-
+                <div *ngIf="blog.editMode === true">
+                    <app-blogedit [blog]="blog"></app-blogedit>
+                </div>
+                <br>
+                <div *ngIf="blog.commentMode !== true">
+                    <a class="js-add-link comments-link disabled-link" (click)="toggleCommentMode(blog)">Add a Comment</a>
+                </div>
+                <div *ngIf="blog.commentMode === true">
+                    <app-blogComment></app-blogComment>
                 </div>
             </ng-template>
         </ngb-panel>

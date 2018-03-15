@@ -26,14 +26,20 @@ export class blogListComponent implements OnInit {
     vote(direction: string, blog: Blog) {
         (!blog.voted) && (blog[direction]+=1);
         blog.voted=true;
-        blog.voteToolTip="You have casted your vote for this blog already. Can vote only once!";
+        blog.voteToolTip="You have casted your vote for this blog already. Can vote only once!!";
     }
 
     editBlog(event, blog){
-        
+        event.preventDefault(); //added to stop the accordian from working
+        event.stopImmediatePropagation();
+        this.toggleEditMode(blog);
     }
 
     toggleEditMode(blog: Blog){
         blog.editMode = !blog.editMode;
+    }
+
+    toggleCommentMode(blog: Blog) {
+        blog.commentMode = ! blog.commentMode;
     }
 }
