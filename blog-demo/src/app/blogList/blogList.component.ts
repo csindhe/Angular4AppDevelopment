@@ -1,3 +1,4 @@
+import { blogCommentService } from './../service/blog-service';
 import { Component, OnInit } from "@angular/core";
 import { BlogService } from "../service/blog-service";
 import { Blog } from "../service/blog.model";
@@ -11,8 +12,9 @@ import { Observable } from "rxjs/Observable";
 export class blogListComponent implements OnInit {
     // listObservable: Observable<Blog[]>;
     blogList: any = [];
+    commentMode: boolean;
 
-    constructor(private blogService: BlogService){
+    constructor(private blogService: BlogService, private blogCommentService: blogCommentService){
 
     }
 
@@ -37,9 +39,5 @@ export class blogListComponent implements OnInit {
 
     toggleEditMode(blog: Blog){
         blog.editMode = !blog.editMode;
-    }
-
-    toggleCommentMode(blog: Blog) {
-        blog.commentMode = ! blog.commentMode;
     }
 }

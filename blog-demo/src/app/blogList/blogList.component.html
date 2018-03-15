@@ -27,12 +27,15 @@
                     <app-blogedit [blog]="blog"></app-blogedit>
                 </div>
                 <br>
-                <div *ngIf="blog.commentMode !== true">
-                    <a class="js-add-link comments-link disabled-link" (click)="toggleCommentMode(blog)">Add a Comment</a>
+                <div class="commentsSection" *ngIf="blog.editMode !== true">
+                    <app-blogComment [blog]="blog"></app-blogComment>
                 </div>
-                <div *ngIf="blog.commentMode === true">
-                    <app-blogComment></app-blogComment>
+                <!-- <div *ngIf="commentMode !== true && blog.editMode !== true">
+                    <a (click)="enterCommentMode()">Add a Comment</a>
                 </div>
+                <div *ngIf="commentMode === true && blog.editMode !== true">
+                    <app-blogComment [blog]="blog"></app-blogComment>
+                </div> -->
             </ng-template>
         </ngb-panel>
     </ngb-accordion>

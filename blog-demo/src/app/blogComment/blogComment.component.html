@@ -1,10 +1,20 @@
-<div class="raised segment">
+<div class="ui info message" *ngIf="commentMode !== true && blogCommentList.length !== 0">
+    <div *ngFor="let comment of blogCommentList" class="media border-light rounded">
+        <div class="text-dark commentC" style="flex-grow: 1; padding-left: 5px;">
+            <span class="media-body text-justify">
+                {{comment.content}}
+            </span>
+            <span class="badge badge-light pull-right">
+                <span color="blue">{{comment.author}}</span>&nbsp; - &nbsp; {{comment.time | date:'medium'}}
+            </span>
+        </div>
+    </div>    
+</div>
+<div *ngIf="commentMode !== true">
+    <a (click)="enterCommentMode()">Add a Comment</a>
+</div>
+<div class="raised segment" *ngIf="commentMode === true">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="ui form">
-
-        <!-- <div class="field">
-            <label for="blogTitle">Title:</label>
-            <input type="text" id="blogTitle" formControlName="title">
-        </div> -->
 
         <div class="field">
             <label for="blogContent">Content:</label>

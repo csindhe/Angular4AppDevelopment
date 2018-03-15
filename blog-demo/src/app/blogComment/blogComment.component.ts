@@ -1,5 +1,8 @@
+import { blogComment } from './../service/blogComment.model';
+import { blogCommentService } from './../service/blog-service';
+import { Blog } from './../service/blog.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from '../service/blog-service';
 
 @Component({
@@ -8,8 +11,12 @@ import { BlogService } from '../service/blog-service';
     styleUrls: ["./blogComment.component.css"]
 })
 export class BlogCommentComponent implements OnInit {
-    myForm: FormGroup
-    constructor(private blogService: BlogService, private fb: FormBuilder) {
+    myForm: FormGroup;
+    commentMode: boolean;
+    blogCommentList: blogComment[] = [];
+    @Input() blog: Blog;
+
+    constructor(private blogCommentService: blogCommentService, private fb: FormBuilder) {
         this.initializeForm()
     }
 
@@ -21,10 +28,34 @@ export class BlogCommentComponent implements OnInit {
     }
 
     ngOnInit() {
-
+       this.blogCommentService.getCommentBlog(this.blog.id).subscribe((x) => {
+            this.blogCommentList = x;
+            console.log("x value is");
+            console.log(x);
+       })
     }
 
     onSubmit() {
+        let author: string, content: string;
+        author = this.myForm.get("author").value;
+        content = this.myForm.get("content").value;
+        this.blogCommentService.addCommentBlog(this.blog.id, author, content);
+        this.clearCommentForm();
+        this.exitCommentMode();
+    }
 
+    enterCommentMode() {
+        this.commentMode = true;
+    }
+
+    exitCommentMode() {
+        this.commentMode = false;
+    }
+
+    clearCommentForm() {
+        this.myForm.setValue({
+            content: "",
+            author: ""
+        })
     }
 }

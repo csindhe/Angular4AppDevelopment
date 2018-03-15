@@ -5,10 +5,11 @@ export class blogComment {
     author: string;
     time: Date;
 
-    constructor(content: string, author: string) {
+    constructor(blogId: any, content: string, author: string) {
+        this.blogId = blogId;
         this.content = content;
         this.author = author;
         this.time = new Date();
-        this.id = new Date().getTime();
+        this.id = new Date().getTime(); 
     }
 }

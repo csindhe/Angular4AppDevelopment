@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { BlogService } from './service/blog-service';
+import { BlogService, blogCommentService } from './service/blog-service';
 import { blogListComponent } from './blogList/blogList.component';
 import { blogCreateComponent } from './blogCreate/blogCreate.component';
 
@@ -25,7 +25,7 @@ import { blogCreateComponent } from './blogCreate/blogCreate.component';
     ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  providers: [BlogService],
+  providers: [BlogService, blogCommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

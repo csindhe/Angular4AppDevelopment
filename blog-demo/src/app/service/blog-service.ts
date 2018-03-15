@@ -1,3 +1,4 @@
+import { blogComment } from './blogComment.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { initialBlogList } from '../service/blog.data';
 import { Observable } from 'rxjs/Observable';
@@ -9,6 +10,7 @@ import 'rxjs/add/observable/from';
 export class BlogService {
    private blogListSubject: BehaviorSubject<Blog[]> = new BehaviorSubject(initialBlogList);
    blogCreateCompletion: Subject<Boolean> = new Subject();
+   
 
    getBlogListSubject(): BehaviorSubject<Blog[]> {
        return this.blogListSubject;
@@ -51,8 +53,33 @@ export class BlogService {
    evalCreationComplete() {
        this.blogCreateCompletion.next(true);
    }
+   
+}
 
-   commentBlog() {
-       
-   }
+export class blogCommentService {
+    iniCommentList: blogComment[] = [];
+    blogCommentCompletion: Subject<Boolean> = new Subject();
+    private overallCommentListSubject: BehaviorSubject<blogComment[]> = new BehaviorSubject(this.iniCommentList);
+
+    addCommentBlog(blogId: string, author: string, content: string) {
+        let currList: blogComment[];
+        let newComment: blogComment = new blogComment(blogId, content, author);
+        this.overallCommentListSubject.subscribe((List) => {
+            currList = List;
+        });
+        currList.push(newComment);
+        this.overallCommentListSubject.next(currList);
+    }
+
+    getCommentBlog(blogId: any) {
+        let blogCommentListSubject: BehaviorSubject<blogComment[]> = new BehaviorSubject([]);
+        let blogComment: blogComment[];
+        this.overallCommentListSubject.subscribe((List) => {
+            blogComment = List.filter((blogComm) => {
+                return blogComm.blogId === blogId ? true : false;
+            });
+            blogCommentListSubject.next(blogComment);
+        });
+        return blogCommentListSubject;
+    }
 }
