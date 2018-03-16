@@ -1,19 +1,40 @@
 <div class="ui info message" *ngIf="commentMode !== true && blogCommentList.length !== 0">
     <h4>Comments</h4>
-    <div *ngFor="let comment of blogCommentList" class="media border-light rounded">
+    <div *ngFor="let comment of blogCommentList" class="media border-light rounded" [id]="comment.id">
         <!-- <div class="text-dark commentC nav-primary" style="flex-grow: 1; padding-left: 5px; border-bottom: 1px solid #34b7bc; margin-bottom: 20px;"> -->
         <div class="text-dark commentC nav-primary" style="flex-grow: 1; padding-left: 5px;">
-            <span class="media-body text-justify">
-                {{comment.content}}
-            </span>
-            <span class="badge badge-light pull-right">
-                <span color="blue">{{comment.author}}</span>&nbsp; - &nbsp; {{comment.time | date:'medium'}}
-            </span>
+            <div class="d-flex flex-row">
+                <div class="p-2" style="margin-left: -15px;">
+                    <i [ngbTooltip]="comment.voteToolTip" class="caret up icon" style="cursor: pointer; font-size: 2em; height: 0;" (click)="voteCount('voteup', comment)"></i>
+                    <!-- <div style="display: block; margin-left: 15px;"> -->
+                        <span class="abc" style="margin-left: 15px;">{{ comment.vote }}</span>
+                    <!-- </div> -->
+                    <i [ngbTooltip]="comment.voteToolTip" class="caret down icon" style="cursor: pointer; font-size: 2em;" (click)="voteCount('votedown', comment)"></i>
+                </div>
+                <div>
+                    <div class="media-body text-justify">
+                        {{comment.content}}
+                    </div>
+                    <span class="badge badge-light pull-right">
+                        <span color="blue">{{comment.author}}</span>&nbsp; - &nbsp; {{comment.time | date:'medium'}}
+                    </span>
+                </div>
+            </div>
+            <br>
+            <div class="raised segment">  <!--commentsSection">-->
+                <app-blogCommentReply [comment]="comment"></app-blogCommentReply>
+            </div>
+            <!-- <div style="margin-left:40px" *ngIf="replyMode !== true">
+                <a style="color: #007bff; cursor: pointer; font-weight: 600" (click)="enterReplyMode()">Reply</a>
+            </div>
+            <div *ngIf="replyMode === true">
+
+            </div> -->
         </div>
     </div>    
 </div>
 <div *ngIf="commentMode !== true">
-    <a (click)="enterCommentMode()" style="color: #007bff; cursor: pointer;">Add a Comment</a>
+    <a (click)="enterCommentMode()" style="color: #007bff; cursor: pointer; font-weight: 600">Add a Comment</a>
 </div>
 <div class="raised segment" *ngIf="commentMode === true">
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="ui form">

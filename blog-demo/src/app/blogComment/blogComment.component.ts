@@ -58,4 +58,12 @@ export class BlogCommentComponent implements OnInit {
             author: ""
         })
     }
+
+    voteCount(direction: string, comment: blogComment) {
+        (!comment.voted) && (comment[direction]+=1) && (comment.vote = comment.voteup - comment.votedown);
+        console.log(comment.voteup + "_" + comment.votedown + "_" + comment.vote);
+        comment.voted = true;
+        comment.voteToolTip = "You have voted already.";
+    }
+
 }

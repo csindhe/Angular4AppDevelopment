@@ -1,0 +1,41 @@
+<div>
+    <div style="margin-left:40px" *ngIf="replyMode !== true">
+        <a style="color: #007bff; cursor: pointer; font-weight: 600" (click)="enterReplyMode()">Reply</a>
+    </div>
+    <br>
+    <div class="ui info message" 
+         *ngIf="replyMode !== true" 
+         style="background-color: ghostwhite; float: right; display: block; max-width: 840px; min-width: 840px; margin-bottom: 20px;">
+        <h5>Replied Comments</h5>
+        <span>The Fellowship eventually splits up and Frodo continues the quest together with 
+                his loyal companion Sam (Sean Astin) and the treacherous Gollum (Andy Serkis). 
+                Meanwhile, Aragorn (Viggo Mortensen), heir in exile to the throne of Gondor, Legolas, Gimli, 
+                Merry and Pippin, and the wizard Gandalf (Ian McKellen) unite to rally the Free Peoples of 
+                Middle-earth in the War of the Ring</span>
+    </div>
+</div>
+<br>
+<div class="raised segment" *ngIf="replyMode === true">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="ui form">
+
+        <div class="field">
+            <label for="blogreplyContent">Content:</label>
+            <textarea type="text" id="blogreplyContent" formControlName="content"></textarea>
+        </div>
+
+        <div class="field">
+            <label for="blogreplyAuthor">Author:</label>
+            <input type="text" id="blogreplyAuthor" formControlName="author">
+        </div>
+
+        <div style ="padding:10px  5px; float:right;">
+            <button type="submit" class="btn btn-info" [disabled]="!myForm.valid">Submit</button>
+        </div>
+
+        <div style ="padding:10px  5px;; float:right;">
+            <button  class="btn btn-danger">Cancel</button>
+        </div>
+
+    </form>
+</div>
+<br>

@@ -1,3 +1,4 @@
+import { blogCommentReplyComponent } from './blogCommentReply/blogCommentReply.component';
 import { BlogCommentComponent } from './blogComment/blogComment.component';
 import { BlogEditComponent } from './blogEdit/blogEdit.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,7 +18,8 @@ import { blogCreateComponent } from './blogCreate/blogCreate.component';
     blogListComponent,
     BlogEditComponent,
     blogCreateComponent,
-    BlogCommentComponent
+    BlogCommentComponent,
+    blogCommentReplyComponent
   ],
   imports: [
     BrowserModule,
