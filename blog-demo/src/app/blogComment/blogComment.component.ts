@@ -30,8 +30,6 @@ export class BlogCommentComponent implements OnInit {
     ngOnInit() {
        this.blogCommentService.getCommentBlog(this.blog.id).subscribe((x) => {
             this.blogCommentList = x;
-            console.log("x value is");
-            console.log(x);
        })
     }
 

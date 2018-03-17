@@ -1,0 +1,21 @@
+a:link {
+    text-decoration: none !important;
+}
+
+a:visited {
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+a:active {
+    text-decoration: underline !important;
+}
+.nav-primary {
+	/* border-top: 2px dashed #046ca3; */
+	border-bottom: 1px dashed #046ca3;
+    /* box-shadow: inset 0 -1px 0 0 #046ca3, inset 0 1px 0 0 #046ca3, 0 1px 0 0 #046ca3, 0 -1px 0 0 #046ca3; */
+	margin-bottom: 20px;
+}

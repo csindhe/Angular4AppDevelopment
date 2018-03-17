@@ -4,14 +4,24 @@
     </div>
     <br>
     <div class="ui info message" 
-         *ngIf="replyMode !== true" 
-         style="background-color: ghostwhite; float: right; display: block; max-width: 840px; min-width: 840px; margin-bottom: 20px;">
-        <h5>Replied Comments</h5>
-        <span>The Fellowship eventually splits up and Frodo continues the quest together with 
-                his loyal companion Sam (Sean Astin) and the treacherous Gollum (Andy Serkis). 
-                Meanwhile, Aragorn (Viggo Mortensen), heir in exile to the throne of Gondor, Legolas, Gimli, 
-                Merry and Pippin, and the wizard Gandalf (Ian McKellen) unite to rally the Free Peoples of 
-                Middle-earth in the War of the Ring</span>
+         *ngIf="replyMode !== true && replyCommentList.length !== 0" 
+         style="background-color: ghostwhite; 
+                float: right; 
+                display: block; 
+                max-width: 840px; 
+                min-width: 840px; 
+                margin-bottom: 20px;">
+         <h5>Replied Comments</h5>
+         <div *ngFor="let comment of replyCommentList" class="media border-light rounded" [id]="comment.id">
+            <div class="text-dark commentC nav-primary">
+                <div class="media-body text-justify">
+                    {{comment.content}}
+                </div>
+                <span class="badge badge-light pull-right">
+                    <span color="blue">{{comment.author}}</span>&nbsp; - &nbsp; {{comment.time | date:'medium'}}
+                </span>        
+            </div>
+         </div>
     </div>
 </div>
 <br>
@@ -33,7 +43,7 @@
         </div>
 
         <div style ="padding:10px  5px;; float:right;">
-            <button  class="btn btn-danger">Cancel</button>
+            <button  class="btn btn-danger" (click)="exitReplyCommentMode()">Cancel</button>
         </div>
 
     </form>

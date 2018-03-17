@@ -76,10 +76,36 @@ export class blogCommentService {
         let blogComment: blogComment[];
         this.overallCommentListSubject.subscribe((List) => {
             blogComment = List.filter((blogComm) => {
-                return blogComm.blogId === blogId ? true : false;
+                console.log(blogComm);
+                return (blogComm.blogId === blogId && blogComm.parentId === undefined)   ? true : false;
             });
             blogCommentListSubject.next(blogComment);
         });
         return blogCommentListSubject;
+    }
+
+    getReplyCommentBlog(parentId: any, blogId: any) {
+        let blogReplyCommentListSub: BehaviorSubject<blogComment[]> = new BehaviorSubject([]);
+        let blogReplyComment: blogComment[];
+        this.overallCommentListSubject.subscribe((List) => {
+            blogReplyComment = List.filter((blogReplyComm) => {
+                return (
+                    blogReplyComm.parentId === parentId && 
+                    blogReplyComm.blogId === blogId && 
+                    blogReplyComm.parentId !== undefined) ? true : false;
+            });
+            blogReplyCommentListSub.next(blogReplyComment);
+        });
+        return blogReplyCommentListSub;
+    }
+
+    addReplyCommentBlog(blogId: any, content: string, author: string, parentId: any) {
+        let currList: blogComment[];
+        let newReplyComment: blogComment = new blogComment(blogId, content, author, parentId);
+        this.overallCommentListSubject.subscribe((List) => {
+            currList = List;
+        });
+        currList.push(newReplyComment);
+        this.overallCommentListSubject.next(currList);
     }
 }

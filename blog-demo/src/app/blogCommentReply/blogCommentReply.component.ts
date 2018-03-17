@@ -12,6 +12,7 @@ export class blogCommentReplyComponent implements OnInit {
     @Input() comment: blogComment;
     myForm: FormGroup;
     replyMode: boolean;
+    replyCommentList: blogComment[];
 
     constructor(private blogCommentService: blogCommentService, private fb: FormBuilder) {
         this.initiateForm();
@@ -25,7 +26,11 @@ export class blogCommentReplyComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+        this.blogCommentService
+            .getReplyCommentBlog(this.comment.id, this.comment.blogId)
+                .subscribe((List) => {
+                    this.replyCommentList = List;
+                });
     }
 
     enterReplyMode() {
@@ -33,6 +38,27 @@ export class blogCommentReplyComponent implements OnInit {
     }
 
     onSubmit() {
-        
+        let content: string, author: string;
+        author = this.myForm.get("author").value;
+        content = this.myForm.get("content").value;
+        this.blogCommentService
+            .addReplyCommentBlog(
+                this.comment.blogId, 
+                content, 
+                author, 
+                this.comment.id);
+        this.clearForm();
+        this.exitReplyCommentMode();
+    }
+
+    exitReplyCommentMode() {
+        this.replyMode = false;
+    }
+
+    clearForm() {
+        this.myForm.setValue({
+            content: "",
+            author: ""
+        })
     }
 }
