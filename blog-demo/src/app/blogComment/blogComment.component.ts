@@ -6,9 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BlogService } from '../service/blog-service';
 
 @Component({
-    selector: "app-blogComment",
-    templateUrl: "./blogComment.component.html",
-    styleUrls: ["./blogComment.component.css"]
+    selector: 'app-blogComment',
+    templateUrl: './blogComment.component.html',
+    styleUrls: ['./blogComment.component.css']
 })
 export class BlogCommentComponent implements OnInit {
     myForm: FormGroup;
@@ -17,7 +17,7 @@ export class BlogCommentComponent implements OnInit {
     @Input() blog: Blog;
 
     constructor(private blogCommentService: blogCommentService, private fb: FormBuilder) {
-        this.initializeForm()
+        this.initializeForm();
     }
 
     initializeForm() {
@@ -35,8 +35,8 @@ export class BlogCommentComponent implements OnInit {
 
     onSubmit() {
         let author: string, content: string;
-        author = this.myForm.get("author").value;
-        content = this.myForm.get("content").value;
+        author = this.myForm.get('author').value;
+        content = this.myForm.get('content').value;
         this.blogCommentService.addCommentBlog(this.blog.id, author, content);
         this.clearCommentForm();
         this.exitCommentMode();

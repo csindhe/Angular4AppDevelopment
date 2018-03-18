@@ -7,7 +7,7 @@
                 <div class="p-2" style="margin-left: -15px;">
                     <i [ngbTooltip]="comment.voteToolTip" class="caret up icon" style="cursor: pointer; font-size: 2em; height: 0;" (click)="voteCount('voteup', comment)"></i>
                     <!-- <div style="display: block; margin-left: 15px;"> -->
-                        <span class="abc" style="margin-left: 15px;">{{ comment.vote }}</span>
+                    <span class="abc" style="margin-left: 15px;">{{ comment.vote }}</span>
                     <!-- </div> -->
                     <i [ngbTooltip]="comment.voteToolTip" class="caret down icon" style="cursor: pointer; font-size: 2em;" (click)="voteCount('votedown', comment)"></i>
                 </div>
