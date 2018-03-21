@@ -7,6 +7,7 @@ import { Blog, BlogEdit } from '../service/blog.model';
 import { filter } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/observable/from';
+import { Subscription } from 'rxjs/Subscription';
 
 export class BlogService {
    private blogListSubject: BehaviorSubject<Blog[]> = new BehaviorSubject(initialBlogList);
@@ -18,8 +19,9 @@ export class BlogService {
    }
 
    editBlog(data: BlogEdit) {
+        let localSubscription: Subscription;
         let currentBlogList: Blog[], updateBlog: Blog, currIndex: number;
-        this.blogListSubject.subscribe((iniList) => {
+        localSubscription = this.blogListSubject.subscribe((iniList) => {
             currentBlogList = iniList;
         });
         updateBlog = currentBlogList.filter((blog, index) => {
@@ -38,17 +40,20 @@ export class BlogService {
         })[0];
         currentBlogList[currIndex] = updateBlog;
         this.blogListSubject.next(currentBlogList);
+        localSubscription.unsubscribe();
    }
 
    createBlog(title: string, content: string, author: string){
+        let localSubscription: Subscription;
         let newBlog = new Blog(title, content, author);
         let currentList: Blog[];
-        this.blogListSubject.subscribe((List) => { 
+        localSubscription = this.blogListSubject.subscribe((List) => { 
             currentList = List;
         });
         currentList.push(newBlog);
         this.blogListSubject.next(currentList);
         this.evalCreationComplete();
+        localSubscription.unsubscribe();
    }
 
    evalCreationComplete() {
@@ -63,13 +68,15 @@ export class blogCommentService {
     private overallCommentListSubject: BehaviorSubject<blogComment[]> = new BehaviorSubject(initialCommentList);
 
     addCommentBlog(blogId: string, author: string, content: string) {
+        let localSubscription: Subscription;
         let currList: blogComment[];
         let newComment: blogComment = new blogComment(blogId, content, author);
-        this.overallCommentListSubject.subscribe((List) => {
+        localSubscription = this.overallCommentListSubject.subscribe((List) => {
             currList = List;
         });
         currList.push(newComment);
         this.overallCommentListSubject.next(currList);
+        localSubscription.unsubscribe();
     }
 
     getCommentBlog(blogId: any) {
@@ -87,18 +94,19 @@ export class blogCommentService {
         return blogCommentListSubject;
     }
 
-    transformComment(item: blogComment) {
-        if(item.parentId !== undefined){
-            item.replyComment.push(item);
-        }
-        return item;
-    }
+    // transformComment(item: blogComment) {
+    //     if(item.parentId !== undefined){
+    //         item.replyComment.push(item);
+    //     }
+    //     return item;
+    // }
 
     addReplyCommentBlog(blogId: any, content: string, author: string, parentId: any) {
+        let localSubscription: Subscription;
         let currList: blogComment[];
         let currComm: blogComment;
         let newReplyComment: blogComment = new blogComment(blogId, content, author, parentId);
-        this.overallCommentListSubject.subscribe((List) => {
+        localSubscription = this.overallCommentListSubject.subscribe((List) => {
             currList = List;
         });
         currList.filter((x) => {
@@ -107,5 +115,6 @@ export class blogCommentService {
             x.replyComment.push(newReplyComment);
         });
         this.overallCommentListSubject.next(currList);
+        localSubscription.unsubscribe();
     }
 }
