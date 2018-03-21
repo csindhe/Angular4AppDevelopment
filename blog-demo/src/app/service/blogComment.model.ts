@@ -10,6 +10,8 @@ export class blogComment {
     voted?: boolean;
     vote?: number;
     voteToolTip?: string;
+    replyComment?: any;
+    replyMode?: boolean;
 
     constructor(blogId: any, content: string, author: string, parentId?: any) {
         this.blogId = blogId;
@@ -21,5 +23,6 @@ export class blogComment {
         this.votedown = 0;
         this.vote = this.voteup - this.votedown;
         this.parentId = parentId;
+        this.replyComment = [];
     }
 }

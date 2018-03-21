@@ -1,4 +1,3 @@
-import { initialCommentList } from './blog.data';
 import { blogComment } from './blogComment.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { initialBlogList } from '../service/blog.data';
@@ -60,7 +59,7 @@ export class BlogService {
 export class blogCommentService {
     iniCommentList: blogComment[] = [];
     blogCommentCompletion: Subject<Boolean> = new Subject();
-    private overallCommentListSubject: BehaviorSubject<blogComment[]> = new BehaviorSubject(initialCommentList);
+    private overallCommentListSubject: BehaviorSubject<blogComment[]> = new BehaviorSubject(this.iniCommentList);
 
     addCommentBlog(blogId: string, author: string, content: string) {
         let currList: blogComment[];
@@ -75,37 +74,38 @@ export class blogCommentService {
     getCommentBlog(blogId: any) {
         let blogCommentListSubject: BehaviorSubject<blogComment[]> = new BehaviorSubject([]);
         let blogComment: blogComment[];
-        let blogCommentService: blogComment;
         this.overallCommentListSubject.subscribe((List) => {
-            blogComment = List.map((x) => {
-                return x; //this.transformComment(x);
-            }).filter((blogComm) => {
-                return (blogComm.blogId === blogId) ? true : false;
+            blogComment = List.filter((blogComm) => {
+                console.log(blogComm);
+                return (blogComm.blogId === blogId && blogComm.parentId === undefined)   ? true : false;
             });
             blogCommentListSubject.next(blogComment);
         });
         return blogCommentListSubject;
     }
 
-    transformComment(item: blogComment) {
-        if(item.parentId !== undefined){
-            item.replyComment.push(item);
-        }
-        return item;
+    getReplyCommentBlog(parentId: any, blogId: any) {
+        let blogReplyCommentListSub: BehaviorSubject<blogComment[]> = new BehaviorSubject([]);
+        let blogReplyComment: blogComment[];
+        this.overallCommentListSubject.subscribe((List) => {
+            blogReplyComment = List.filter((blogReplyComm) => {
+                return (
+                    blogReplyComm.parentId === parentId && 
+                    blogReplyComm.blogId === blogId && 
+                    blogReplyComm.parentId !== undefined) ? true : false;
+            });
+            blogReplyCommentListSub.next(blogReplyComment);
+        });
+        return blogReplyCommentListSub;
     }
 
     addReplyCommentBlog(blogId: any, content: string, author: string, parentId: any) {
         let currList: blogComment[];
-        let currComm: blogComment;
         let newReplyComment: blogComment = new blogComment(blogId, content, author, parentId);
         this.overallCommentListSubject.subscribe((List) => {
             currList = List;
         });
-        currList.filter((x) => {
-            return (x.blogId === blogId && x.id === parentId) ? true : false;
-        }).map((x) => {
-            x.replyComment.push(newReplyComment);
-        });
+        currList.push(newReplyComment);
         this.overallCommentListSubject.next(currList);
     }
 }

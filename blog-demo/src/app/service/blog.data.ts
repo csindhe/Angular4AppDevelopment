@@ -1,3 +1,4 @@
+import { blogComment } from './blogComment.model';
 import { Blog } from '../service/blog.model';
 
 export const initialBlogList: Blog[] = [
@@ -59,3 +60,66 @@ export const initialBlogList: Blog[] = [
         thumbsdown: 2
     }
 ];
+
+export const initialCommentList: blogComment[] = [
+    {
+        id: 1,
+        blogId: 1,
+        content: `The series was received with overwhelming praise and 
+                  was a major financial success, with the films collectively 
+                  being among the highest-grossing film series of all time. 
+                  The films were critically acclaimed and heavily awarded, 
+                  winning 17 out of 30 total Academy Award nominations. 
+                  The final film in the series, The Return of the King, 
+                  won all 11 of its Academy Award nominations including 
+                  Best Picture, which also tied it with Ben-Hur and 
+                  Titanic for most Academy Awards received for a film. 
+                  The series received wide praise for its innovative special 
+                  and visual effects.`,
+        author: 'Wiki',
+        time: new Date(),
+        voteup: 100,
+        votedown: 5,
+        voted: true,
+        vote: 95,
+        replyComment: [
+            {
+                id: '1a',
+                blogId: 1,
+                content: `Wow, this is awesome. I am so proud`,
+                author: 'Peter Jackson',
+                time: new Date(),
+            }
+        ]
+    },
+    {
+        id: 2,
+        blogId: 2,
+        content: `The series was received with overwhelming praise and 
+                  was a major financial success, with the films collectively 
+                  being among the highest-grossing film series of all time. 
+                  The films were critically acclaimed and heavily awarded, 
+                  winning 17 out of 30 total Academy Award nominations. 
+                  The final film in the series, The Return of the King, 
+                  won all 11 of its Academy Award nominations including 
+                  Best Picture, which also tied it with Ben-Hur and 
+                  Titanic for most Academy Awards received for a film. 
+                  The series received wide praise for its innovative special 
+                  and visual effects.`,
+        author: 'Wiki',
+        time: new Date(),
+        voteup: 100,
+        votedown: 5,
+        voted: true,
+        vote: 95,
+        replyComment: [
+            {
+                id: '2a',
+                blogId: 1,
+                content: `Wow, this is awesome. I am so proud`,
+                author: 'Francis Ford Coppola',
+                time: new Date(),
+            }
+        ] 
+    }
+]

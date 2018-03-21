@@ -12,15 +12,12 @@ import { BlogService } from '../service/blog-service';
 })
 export class BlogCommentComponent implements OnInit {
     myForm: FormGroup;
-    myReplyForm: FormGroup;
     commentMode: boolean;
     blogCommentList: blogComment[] = [];
-    replyMode: boolean;
     @Input() blog: Blog;
 
     constructor(private blogCommentService: blogCommentService, private fb: FormBuilder) {
         this.initializeForm();
-        this.initializeReplyForm();
     }
 
     initializeForm() {
@@ -65,45 +62,6 @@ export class BlogCommentComponent implements OnInit {
         console.log(comment.voteup + "_" + comment.votedown + "_" + comment.vote);
         comment.voted = true;
         comment.voteToolTip = "You have voted already.";
-    }
-
-    enterReplyMode(comment: blogComment) {
-        comment.replyMode = true;
-        // this.replyMode = true;
-        // this.initializeReplyForm();
-    }
-
-    onReplySubmit(comment: blogComment) {
-        let content: string, author: string;
-        author = this.myReplyForm.get("author").value;
-        content = this.myReplyForm.get("content").value;
-        this.blogCommentService
-            .addReplyCommentBlog(
-                comment.blogId, 
-                content, 
-                author, 
-                comment.id);
-        this.clearForm();
-        this.exitReplyCommentMode(comment);
-    }
-
-    exitReplyCommentMode(comment: blogComment) {
-        // this.replyMode = false;
-        comment.replyMode = false;
-    }
-
-    clearForm() {
-        this.myReplyForm.setValue({
-            content: "",
-            author: ""
-        })
-    }
-
-    initializeReplyForm() {
-        this.myReplyForm = this.fb.group({
-            content: ['', Validators.required],
-            author: ['', Validators.required]
-        });
     }
 
 }

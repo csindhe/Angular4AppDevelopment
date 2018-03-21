@@ -22,54 +22,14 @@
             </div>
             <br>
             <div class="raised segment">  <!--commentsSection">-->
-                <!-- <app-blogCommentReply [comment]="comment"></app-blogCommentReply> -->
-                <div style="margin-left:40px" *ngIf="comment.replyMode !== true">
-                    <a style="color: #007bff; cursor: pointer; font-weight: 600" (click)="enterReplyMode(comment)">Reply</a>
-                </div>
-                
-                <div class="ui info message" 
-                    *ngIf="comment.replyMode !== true && comment.replyComment.length !== 0" 
-                    style="background-color: ghostwhite; 
-                            float: right; 
-                            display: block;
-                            margin-bottom: 20px;">
-                    <h5>Replied Comments</h5>
-                    <div *ngFor="let rcomment of comment.replyComment" class="media border-light rounded" [id]="rcomment.id">
-                        <div class="text-dark commentC nav-primary-reply">
-                            <div class="media-body text-justify">
-                                {{rcomment.content}}
-                            </div>
-                            <span class="badge badge-light pull-right">
-                                <span color="blue">{{rcomment.author}}</span>&nbsp; - &nbsp; {{comment.time | date:'medium'}}
-                            </span>        
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="raised segment" *ngIf="comment.replyMode === true">
-                    <form [formGroup]="myReplyForm" (ngSubmit)="onReplySubmit(comment)" class="ui form">
-
-                        <div class="field">
-                            <label for="blogreplyContent">Content:</label>
-                            <textarea type="text" id="blogreplyContent" formControlName="content"></textarea>
-                        </div>
-
-                        <div class="field">
-                            <label for="blogreplyAuthor">Author:</label>
-                            <input type="text" id="blogreplyAuthor" formControlName="author">
-                        </div>
-
-                        <div style ="padding:10px  5px; float:right;">
-                            <button type="submit" class="btn btn-info" [disabled]="!myReplyForm.valid">Submit</button>
-                        </div>
-
-                        <div style ="padding:10px  5px;; float:right;">
-                            <button  class="btn btn-danger" (click)="exitReplyCommentMode(comment)">Cancel</button>
-                        </div>
-
-                    </form>
-                </div>
+                <app-blogCommentReply [comment]="comment"></app-blogCommentReply>
             </div>
+            <!-- <div style="margin-left:40px" *ngIf="replyMode !== true">
+                <a style="color: #007bff; cursor: pointer; font-weight: 600" (click)="enterReplyMode()">Reply</a>
+            </div>
+            <div *ngIf="replyMode === true">
+
+            </div> -->
         </div>
     </div>    
 </div>

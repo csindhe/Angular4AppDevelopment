@@ -18,8 +18,8 @@ import { blogCreateComponent } from './blogCreate/blogCreate.component';
     blogListComponent,
     BlogEditComponent,
     blogCreateComponent,
-    BlogCommentComponent,
-    blogCommentReplyComponent
+    BlogCommentComponent
+    //blogCommentReplyComponent
   ],
   imports: [
     BrowserModule,
