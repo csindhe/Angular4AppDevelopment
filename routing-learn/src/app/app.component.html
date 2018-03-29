@@ -1,7 +1,19 @@
-<h1>Angular Router</h1>
-<nav>
-  <a routerLink="/crisis-center" routerLinkActive = "active">Crisis Center</a>
-  <a routerLink="/heroes" routerLinkActive = "active">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="jumbotron">
+    <h1 >Angular Router</h1>
+  </div>
+  
+  <div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/crisis-center" routerLinkActive = "active">Crisis Center</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/heroes" routerLinkActive = "active">Heroes</a>
+      </li>
+    </ul>
+  </div>
+  <br>  
+  <router-outlet></router-outlet>
+</div>
 
