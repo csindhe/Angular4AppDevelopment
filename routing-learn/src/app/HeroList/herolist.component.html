@@ -2,11 +2,15 @@
 <h2>My Heroes</h2>
 
 <ul class="heroes" style="list-style-type: none">
-    <li *ngFor="let hero of heroes" 
+    <li *ngFor="let hero of heroes | async" 
         (click)="onSelect(hero)" 
         [class.selected]="hero === selectedHero"
     >
-        <span class="badge" style="cursor: pointer">{{ hero.id }}</span> {{ hero.name }}
+        <a [routerLink]="['/hero', hero.id]">
+            <span 
+                class="badge" 
+                style="cursor: pointer">{{ hero.id }}</span> {{ hero.name }}
+        </a>
     </li>
 </ul>
 

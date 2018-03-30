@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HeroService {
@@ -15,7 +16,12 @@ export class HeroService {
     }
 
     getHeroes(): Observable<Hero[]> {
-        this.messageService.add('HeroService: fetched heroes');
-        return of(HEROES);
+        return  of(HEROES);
+    }
+
+    getHero(id: number | string) {
+       return this.getHeroes().map((heroes) => {
+           return heroes.find((hero) => hero.id === +id);
+       })
     }
 }
