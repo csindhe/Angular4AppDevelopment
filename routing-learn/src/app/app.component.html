@@ -14,6 +14,9 @@
     </ul>
   </div>
   <br>  
+  <a class="nav-link" [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
+  <br>
   <router-outlet></router-outlet>
+  <router-outlet name="popup"></router-outlet>
 </div>
 

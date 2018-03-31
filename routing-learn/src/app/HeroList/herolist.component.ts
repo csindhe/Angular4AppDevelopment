@@ -1,9 +1,11 @@
-import { Observable } from 'rxjs/Observable';
 import { ParamMap } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from './../Services/hero';
 import { Component, OnInit } from "@angular/core";
 import { HeroService } from '../Services/hero.service';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-herolist',
@@ -38,6 +40,7 @@ export class HeroListComponent implements OnInit {
 
     onSelect(hero: Hero) {
         this.selectedHero = hero;
+        this.selectedId = hero.id;
     }
 
 }

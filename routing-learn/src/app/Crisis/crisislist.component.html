@@ -1,2 +1,12 @@
-<h2>CRISIS CENTER</h2>
-<p>Get your crisis here</p>
+<ul class="items">
+    <li *ngFor="let crisis of crises | async"
+      (click)="onSelect(crisis)"
+      [class.selected]="crisis.id === selectedId">
+      <a [routerLink]="[crisis.id]">
+        <span class="badge">{{ crisis.id }}</span>{{ crisis.name }}
+      </a>
+    </li>
+  </ul>
+  <!-- <a class="nav-link" [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a> -->
+  <router-outlet></router-outlet>
+  <!-- <router-outlet name="popup"></router-outlet> -->
