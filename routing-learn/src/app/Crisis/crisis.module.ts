@@ -4,7 +4,7 @@ import { CrisisDetailComponent } from './crisis-detail.component';
 import { CrisisListComponent } from './crisislist.component';
 import { CrisisCenterComponent } from './crisis-center.component';
 import { CrisisCenterRoutingModule } from './crisis-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CrisisHomeComponent } from './crisishome.component';
@@ -15,7 +15,7 @@ import { ComposeMessageComponent } from '../Message/composemessage.component';
     imports: [
         CommonModule,
         FormsModule,
-        BrowserModule,
+        // BrowserModule,
         CrisisCenterRoutingModule
     ],
     declarations: [

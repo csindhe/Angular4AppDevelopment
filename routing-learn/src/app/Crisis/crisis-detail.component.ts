@@ -8,18 +8,18 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-crisisdetail',
-    template: `<div *ngIf="crisis$ | async as crisis">
-        <h3>"{{ crisis.name }}"</h3>
+    template: `<div *ngIf="crisis"><!--$ | async as crisis"-->
+        <h3>"{{ editName }}"</h3>
         <div>
             <label>Id: </label>{{ crisis.id }}
         </div>
         <div>
             <label>Name: </label>
-            <input [(ngModel)]="crisis.name" placeholder="name"/>
+            <input [(ngModel)]="editName" placeholder="name"/>
         </div>
         <p>
-            <button (click)="save(crisis)">Save</button>
-            <button (click)="cancel(crisis)">Cancel</button>
+            <button (click)="save()">Save</button>
+            <button (click)="cancel()">Cancel</button>
         </p>
     </div>`, 
     styles: ['input { width: 20em }'],
@@ -34,6 +34,8 @@ export class CrisisDetailComponent implements OnInit {
     crisis$: Observable<Crisis>;
     crisis: Crisis;
     editName: string;
+    edited: boolean = false;
+    cancelled: boolean = false;
 
     constructor(private route: ActivatedRoute, 
                 private router: Router,
@@ -43,22 +45,27 @@ export class CrisisDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.crisis$ = this.route.paramMap.switchMap((params: ParamMap) => 
-             this.service.getCrisis(params.get('id'))
-        );
+        // this.crisis$ = this.route.paramMap.switchMap((params: ParamMap) => 
+        //      this.service.getCrisis(params.get('id'))
+        // );
+
+        this.route.data.subscribe((data: { crisis: Crisis }) => {
+            this.editName = data.crisis.name;
+            this.crisis = data.crisis;
+        });
     }
 
-    cancel(crisis: Crisis) {
-        this.gotoCrises(crisis);
+    cancel() {
+        this.gotoCrises();
     }
 
-    save(crisis: Crisis) {
-        // this.crisis.name = this.editName;
-        this.gotoCrises(crisis);
+    save() {
+        this.crisis.name = this.editName;
+        this.gotoCrises();
     }
 
-    gotoCrises(crisis?: Crisis) {
-        let crisisId = crisis ? crisis.id : null;
+    gotoCrises() {
+        let crisisId = this.crisis ? this.crisis.id : null;
         this.router.navigate(['../', { id: crisisId, foo: 'foo' }], { relativeTo: this.route });
     }
 
@@ -68,4 +75,5 @@ export class CrisisDetailComponent implements OnInit {
         }
         return this.dialogService.confirm('Discard Changes');
     }
+
 }

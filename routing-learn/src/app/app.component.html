@@ -9,7 +9,13 @@
         <a class="nav-link" routerLink="/crisis-center" routerLinkActive = "active">Crisis Center</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/heroes" routerLinkActive = "active">Heroes</a>
+        <a class="nav-link" routerLink="/superheroes" routerLinkActive = "active">Heroes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin" routerLinkActive = "active">Admin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive = "active">Login</a>
       </li>
     </ul>
   </div>
@@ -17,6 +23,7 @@
   <a class="nav-link" [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
   <br>
   <router-outlet></router-outlet>
+  <br>
   <router-outlet name="popup"></router-outlet>
 </div>
 
