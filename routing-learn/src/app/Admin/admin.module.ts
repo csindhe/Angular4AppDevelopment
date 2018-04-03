@@ -20,6 +20,6 @@ import { AuthService } from '../auth.service';
         ManageCrisesComponent,
         ManageHeroesComponent
     ],
-    providers:[ AuthGuard, AuthService ]
+    providers:[ AuthGuard ]
 })
 export class AdminModule { }

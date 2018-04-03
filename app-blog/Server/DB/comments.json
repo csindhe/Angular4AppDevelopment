@@ -1,0 +1,24 @@
+[{
+    "id": 1,
+    "blogId": 1,
+    "parentId": "",
+    "content": "No, Sam. Not yet, anyway, not further than the Havens. Though you too were a Ring-bearer, if only for a little while. Your time may come. Do not be too sad, Sam. You cannot always be torn in two. You will have to be one and whole, for many years. You have so much to enjoy and to be, and to do",
+    "author": "Frodo Baggins",
+    "time": "2018-03-29T17:22:39.619Z"
+},
+{
+    "id": 2,
+    "blogId": 2,
+    "parentId": "",
+    "content": "A friend should always underestimate your virtues and an enemy overestimate your faults.",
+    "author": "Vito Corleone",
+    "time": "2018-03-29T17:22:39.619Z"
+},
+{
+    "id": 3,
+    "blogId": 1,
+    "parentId": 1,
+    "content": "I know that well enough, Mr. Frodo. Of course you are. And I'm coming with you.",
+    "author": "Samwise Gamgee",
+    "time": "2018-03-29T17:22:39.619Z"
+}]
