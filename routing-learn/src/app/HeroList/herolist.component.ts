@@ -2,7 +2,7 @@ import { ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from './../Services/hero';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HeroService } from '../Services/hero.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -13,11 +13,12 @@ import 'rxjs/add/operator/switchMap';
     styleUrls: ['./herolist.component.css']
 })
 
-export class HeroListComponent implements OnInit {
+export class HeroListComponent implements OnInit, OnDestroy {
     selectedHero: Hero;
     heroes: Observable<Hero[]>;
     // heroes: Hero[];
     selectedId: number;
+    counter: number;
 
     constructor(private heroService: HeroService, private route: ActivatedRoute) {
 
@@ -41,6 +42,14 @@ export class HeroListComponent implements OnInit {
     onSelect(hero: Hero) {
         this.selectedHero = hero;
         this.selectedId = hero.id;
+    }
+
+    ngOnDestroy() {
+        console.log("Destroyed");
+    }
+
+    increment() {
+        this.counter = 100;
     }
 
 }

@@ -1,5 +1,7 @@
 <h1>Tour of Heroes</h1>
 <h2>My Heroes</h2>
+<div>{{counter}}</div>
+<button (click)="increment()">Check State</button>
 
 <ul class="heroes" style="list-style-type: none">
     <li *ngFor="let hero of heroes | async"
