@@ -3,13 +3,13 @@ import { Blog, BlogComment } from '../BlogAppModels/blog.model';
 import { Injectable } from '@angular/core';
 import { rootReducer } from './app.reducer.service';
 
-interface appState  {
+export interface appState  {
     getallBlogs?: Blog[],
-    getBlog?: Blog,
-    putBlog?: Blog,
-    postBlog?: Blog,
+    getActiveBlog?: Blog,
+    EditBlog?: Blog,
+    newBlog?: Blog,
     getBlogCommments?: BlogComment[],
-    postBlogComment?: BlogComment
+    newBlogComment?: BlogComment
 }
 
 @Injectable()

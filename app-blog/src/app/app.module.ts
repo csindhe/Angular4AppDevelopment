@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BlogModule } from './BlogAppModules/blog.module';
 import { BlogCommentsModule } from './BlogAppModules/blogcomment.module';
 import { RouterModule } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     RouterModule,
+    HttpClientModule,
     BlogModule,
     BlogCommentsModule
   ],
