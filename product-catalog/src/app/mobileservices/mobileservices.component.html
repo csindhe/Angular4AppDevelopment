@@ -1,0 +1,14 @@
+<div *ngFor="let product of mobSerProdList">
+    <div class="card" style="display: flex; flex-direction: row;">
+        <div style="flex-basis: 20%;">
+            <img class="card-img-top" [src]="product.imgUrl" alt="Card Image" style="height: 200px; width: 200px;">
+        </div>
+        <div class="card-body" style="flex-basis: 80%;">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.desc }}</p>
+            <div class="nav-item">
+                <a class="nav-link" [routerLink]="['/Product', product.id]">View More</a>
+            </div>
+        </div>
+    </div>
+</div>

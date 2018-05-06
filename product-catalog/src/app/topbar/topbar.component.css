@@ -1,0 +1,10 @@
+.topbar_logo {
+    height: 100px;
+    width: 100px;
+}
+.app_logo {
+    flex-basis: 10%;
+}
+.app_title {
+    flex-basis: 90%;
+}

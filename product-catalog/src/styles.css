@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+.body {
+    height: 100vh;
+    width: 100%;
+}
+
+@media screen and (min-width: 480px) {
+    .app_logo {
+        order: 1;
+        width: 100%;
+    }
+    .app_title {
+        order: 2;
+        width: 100%;
+    }
+} 
